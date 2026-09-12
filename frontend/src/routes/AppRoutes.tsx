@@ -9,6 +9,7 @@ import DiseaseDetection from "@/pages/DiseaseDetection";
 import Login from "@/pages/Login";
 import Market from "@/pages/Market";
 import Produce from "@/pages/Produce";
+import Weather from "@/pages/Weather";
 import NotFound from "@/pages/NotFound";
 import AppLayout from "@/layouts/AppLayout";
 
@@ -26,6 +27,7 @@ function AppRoutes() {
           <Route path="produce" element={<Produce />} />
           <Route path="decision-engine" element={<DecisionEngine />} />
           <Route path="market" element={<Market />} />
+          <Route path="weather" element={<Weather />} />
           <Route path="analytics" element={<Analytics />} />
           <Route path="assistant" element={<Assistant />} />
         </Route>
