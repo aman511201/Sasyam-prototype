@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import Analytics from "@/pages/Analytics";
 import Assistant from "@/pages/Assistant";
@@ -15,7 +15,7 @@ import AppLayout from "@/layouts/AppLayout";
 
 function AppRoutes() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
 
@@ -35,7 +35,7 @@ function AppRoutes() {
         <Route path="/" element={<Navigate to="/app" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
