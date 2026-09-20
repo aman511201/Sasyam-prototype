@@ -7,6 +7,7 @@ import {
   CloudSun,
   IndianRupee,
   Leaf,
+  Mic,
   ScanLine,
   Sparkles,
   Sprout,
@@ -82,6 +83,13 @@ function Dashboard() {
         description="Sasyam Live Command Center: Monitor crop growth stages, APMC Mandi trends, storage shelf-life, and AI decision strategies."
         action={
           <div className="flex items-center gap-2">
+            <Link
+              to="/app/assistant?mode=voice"
+              className="flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition shadow-xs"
+            >
+              <Mic size={14} className="text-emerald-700" />
+              Kisan Voice Assistant
+            </Link>
             <Link
               to="/app/assistant"
               className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm"
@@ -195,15 +203,18 @@ function Dashboard() {
         </Link>
 
         <Link
-          to="/app/assistant"
+          to="/app/assistant?mode=voice"
           className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm hover:border-emerald-500 hover:shadow-md transition group"
         >
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600 group-hover:bg-purple-500 group-hover:text-white transition">
-            <Bot size={20} />
+            <Mic size={20} />
           </div>
           <div>
-            <p className="font-bold text-slate-900 text-xs sm:text-sm">Kisan AI Assistant</p>
-            <p className="text-[11px] text-slate-500">24/7 ICAR Agronomy</p>
+            <div className="flex items-center gap-1.5">
+              <p className="font-bold text-slate-900 text-xs sm:text-sm">Kisan Voice & AI</p>
+              <span className="rounded-full bg-emerald-100 px-1.5 py-0.2 text-[9px] font-bold text-emerald-700">Live Voice</span>
+            </div>
+            <p className="text-[11px] text-slate-500">24/7 Voice & Chat ICAR</p>
           </div>
         </Link>
       </div>

@@ -58,10 +58,10 @@ const navigation = [
     icon: Activity,
   },
   {
-    label: "Kisan AI Assistant",
+    label: "Kisan AI & Voice Assistant",
     path: "/app/assistant",
     icon: Bot,
-    badge: "24/7",
+    badge: "AI + Voice",
   },
 ];
 
