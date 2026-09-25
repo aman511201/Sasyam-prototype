@@ -14,6 +14,7 @@ import {
   Store,
   Sun,
   TrendingUp,
+  Truck,
   Wheat,
   Zap,
 } from "lucide-react";
@@ -96,6 +97,13 @@ function Dashboard() {
             >
               <Bot size={15} className="text-emerald-600" />
               Ask Kisan AI
+            </Link>
+            <Link
+              to="/app/logistics"
+              className="hidden sm:flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition shadow-xs"
+            >
+              <Truck size={15} className="text-amber-600" />
+              Live Logistics
             </Link>
             <Link
               to="/app/decision-engine"

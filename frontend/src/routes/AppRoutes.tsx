@@ -7,6 +7,7 @@ import Dashboard from "@/pages/Dashboard";
 import DecisionEngine from "@/pages/DecisionEngine";
 import DiseaseDetection from "@/pages/DiseaseDetection";
 import Login from "@/pages/Login";
+import Logistics from "@/pages/Logistics";
 import Market from "@/pages/Market";
 import Produce from "@/pages/Produce";
 import Weather from "@/pages/Weather";
@@ -25,6 +26,7 @@ function AppRoutes() {
           <Route path="crops" element={<Crops />} />
           <Route path="disease-detection" element={<DiseaseDetection />} />
           <Route path="produce" element={<Produce />} />
+          <Route path="logistics" element={<Logistics />} />
           <Route path="decision-engine" element={<DecisionEngine />} />
           <Route path="market" element={<Market />} />
           <Route path="weather" element={<Weather />} />

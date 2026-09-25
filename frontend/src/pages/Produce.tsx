@@ -7,6 +7,7 @@ import {
   ShieldAlert,
   Snowflake,
   Thermometer,
+  Truck,
   Warehouse,
   X,
   Zap,
@@ -135,13 +136,22 @@ function Produce() {
         title="Produce Inventory & Cold Chain Management"
         description="Track post-harvest storage batches, chamber temperature/humidity telemetry, shelf-life degradation, and trigger liquidation before spoilage."
         action={
-          <button
-            onClick={() => setShowLogModal(true)}
-            className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-emerald-500 transition"
-          >
-            <Plus size={16} />
-            Log Harvest Batch
-          </button>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/app/logistics"
+              className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition shadow-xs"
+            >
+              <Truck size={15} className="text-amber-600" />
+              Live Transporters & Map
+            </Link>
+            <button
+              onClick={() => setShowLogModal(true)}
+              className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-emerald-500 transition"
+            >
+              <Plus size={16} />
+              Log Harvest Batch
+            </button>
+          </div>
         }
       />
 

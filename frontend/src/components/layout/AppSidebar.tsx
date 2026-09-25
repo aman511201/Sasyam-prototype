@@ -10,6 +10,7 @@ import {
   ScanLine,
   Sprout,
   TrendingUp,
+  Truck,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -40,6 +41,12 @@ const navigation = [
     label: "Produce & Storage",
     path: "/app/produce",
     icon: Package,
+  },
+  {
+    label: "Map & Logistics",
+    path: "/app/logistics",
+    icon: Truck,
+    badge: "Live GPS",
   },
   {
     label: "Decision Engine",
@@ -117,6 +124,8 @@ function AppSidebar() {
                     className={`rounded-md px-1.5 py-0.5 text-[10px] font-bold ${
                       item.badge === "AI Vision"
                         ? "bg-amber-400 text-slate-950"
+                        : item.badge === "Live GPS"
+                        ? "bg-amber-400 text-slate-950 animate-pulse"
                         : item.badge === "Smart"
                         ? "bg-emerald-400 text-slate-950"
                         : item.badge === "7-Day"
