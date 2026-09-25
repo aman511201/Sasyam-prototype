@@ -61,27 +61,44 @@ export function LogisticsMap({
     onSelectEntityRef.current = onSelectEntity;
   }, [onSelectEntity]);
 
+  // Keep refs for data to prevent recreate cycles
+  const fieldsRef = useRef(fields);
+  const warehousesRef = useRef(warehouses);
+  const transportersRef = useRef(transporters);
+
+  useEffect(() => {
+    fieldsRef.current = fields;
+    warehousesRef.current = warehouses;
+    transportersRef.current = transporters;
+  }, [fields, warehouses, transporters]);
+
   // Fit all markers onto screen
   const fitAllBounds = useCallback(() => {
     if (!mapInstanceRef.current) return;
     const allCoords: [number, number][] = [];
 
-    fields.forEach((f) => allCoords.push(f.coordinates));
-    warehouses.forEach((w) => allCoords.push(w.coordinates));
-    transporters.forEach((t) => allCoords.push(t.currentLocation));
+    fieldsRef.current.forEach((f) => allCoords.push(f.coordinates));
+    warehousesRef.current.forEach((w) => allCoords.push(w.coordinates));
+    transportersRef.current.forEach((t) => allCoords.push(t.currentLocation));
 
     if (allCoords.length > 0) {
       const bounds = L.latLngBounds(allCoords);
       mapInstanceRef.current.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
     }
-  }, [fields, warehouses, transporters]);
+  }, []);
 
-  // 1. Initialize Map
+  // 1. Initialize Map once on mount
   useEffect(() => {
-    if (!mapContainerRef.current || mapInstanceRef.current) return;
+    const container = mapContainerRef.current;
+    if (!container || mapInstanceRef.current) return;
+
+    // Clear any leftover leaflet instance id on the container
+    if ((container as unknown as { _leaflet_id?: number | null })._leaflet_id) {
+      (container as unknown as { _leaflet_id?: number | null })._leaflet_id = null;
+    }
 
     // Center around Punjab (Ludhiana)
-    const map = L.map(mapContainerRef.current, {
+    const map = L.map(container, {
       center: [30.85, 75.92],
       zoom: 11,
       zoomControl: false,
@@ -110,15 +127,20 @@ export function LogisticsMap({
 
     mapInstanceRef.current = map;
 
-    // Invalidate size once DOM stabilizes
-    setTimeout(() => {
-      map.invalidateSize();
-      fitAllBounds();
+    // Invalidate size once DOM stabilizes and fit bounds
+    const timer = setTimeout(() => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize();
+        fitAllBounds();
+      }
     }, 250);
 
     return () => {
-      map.remove();
-      mapInstanceRef.current = null;
+      clearTimeout(timer);
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
     };
   }, [fitAllBounds]);
 
